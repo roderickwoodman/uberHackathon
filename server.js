@@ -8,6 +8,8 @@ var https = require('https');
 var bodyParser = require('body-parser');
 var app = express();
 var config = require('./config.js');
+var blood = require('./donatebloodopp.js');
+var volunteer = require('./volunteeropp.js');
 // Get all auth stuff from config file
 // ClientID & ClientSecret for API requests with OAUTH
 var clientID = config.ClientID;
@@ -38,6 +40,13 @@ app.post('/cars', function(request, response) {
   })
 })
 
+app.get('/blood', function(req, res){
+  res.json(blood);
+})
+
+app.get('/volunteer', function(req, res){
+  res.json(volunteer);
+})
 
 // use this for an api get request without oauth
 function getRequest(endpoint, callback) {
